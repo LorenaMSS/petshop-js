@@ -13,7 +13,10 @@ const atualizaBanco = () => {
 const listarPets = () => {
   for (let pet of bancoDados.pets) {
     // template string
-    console.log(`nome do pet: ${pet.nome} serviços: ${pet.servicos}`);
+    console.log(`nome do pet: ${pet.nome} serviços:`);
+    for (let serviço of pet.servicos) {
+      console.log(serviço);
+    }
     pet.vacinado
       ? console.log('pet vacinado')
       : console.log('pet não vacinado');
@@ -125,7 +128,7 @@ const atenderCliente = (pet, servicos) => {
 
 listarPets();
 
-atenderCliente(bancoDados.pets[2], darBanho);
+atenderCliente(bancoDados.pets[0], darBanho);
 
 //novoCliente();
 //darBanho();
