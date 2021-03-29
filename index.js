@@ -13,7 +13,7 @@ const atualizaBanco = () => {
 const listarPets = () => {
   for (let pet of bancoDados.pets) {
     // template string
-    console.log(`nome do pet: ${pet.nome}`);
+    console.log(`nome do pet: ${pet.nome} serviços: ${pet.servicos}`);
     pet.vacinado
       ? console.log('pet vacinado')
       : console.log('pet não vacinado');
@@ -72,7 +72,10 @@ const darBanho = (pet) => {
 
   for (let pet of bancoDados.pets) {
     if (pet.nome == nomep) {
-      pet.servicos.push('banho');
+      pet.servicos.push({
+        nome: 'banho',
+        data: moment().format('DD-MM-YYYY'),
+      });
       console.log(`${pet.nome} está tomando banho...`);
       console.log(`${pet.nome} está de banho tomado!`);
       console.log(`este serviço ocorreu em ${moment().format('L')}`);
@@ -85,7 +88,10 @@ const tosarPet = (pet) => {
 
   for (let pet of bancoDados.pets) {
     if (pet.nome == nomep) {
-      pet.servicos.push('tosa');
+      pet.servicos.push({
+        nome: 'tosa',
+        data: moment().format('DD-MM-YYYY'),
+      });
       console.log(`${pet.nome} está sendo tosado...`);
       console.log(`${pet.nome} está com o cabelinho cortado!`);
       console.log(`este serviço ocorreu em ${moment().format('L')}`);
@@ -98,7 +104,10 @@ const cortarUnhas = (pet) => {
 
   for (let pet of bancoDados.pets) {
     if (pet.nome == nomep) {
-      pet.servicos.push('Aparar as unhas');
+      pet.servicos.push({
+        nome: 'corte de Unhas',
+        data: moment().format('DD-MM-YYYY'),
+      });
       console.log(`${pet.nome} está cortando as unhas...`);
       console.log(`${pet.nome} está com a manicure em dia!`);
       console.log(`este serviço ocorreu em ${moment().format('L')}`);
@@ -116,7 +125,7 @@ const atenderCliente = (pet, servicos) => {
 
 listarPets();
 
-atenderCliente(bancoDados.pets[0], darBanho);
+atenderCliente(bancoDados.pets[2], darBanho);
 
 //novoCliente();
 //darBanho();

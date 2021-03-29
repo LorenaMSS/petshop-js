@@ -9,7 +9,7 @@
       "tutor": "José",
       "contato": "(81) 99999-0000",
       "vacinado": false,
-      "servicos": ["banho"]
+      "servicos": [{ "nome": "", "data": "" }]
     },
     {
       "nome": "Kiwi",
@@ -20,7 +20,7 @@
       "tutor": "Luana",
       "contato": "(81) 90093-7689",
       "vacinado": false,
-      "servicos": []
+      "servicos": [{ "nome": "", "data": "" }]
     },
     {
       "nome": "Mimosa",
@@ -31,40 +31,7 @@
       "tutor": "Alana",
       "contato": "(81) 99567-0089",
       "vacinado": true,
-      "servicos": []
-    },
-    {
-      "nome": "jujuba",
-      "tipo": "cachorro",
-      "idade": "10",
-      "raca": "Vira-lata",
-      "peso": "10",
-      "tutor": "André",
-      "contato": "(81) 99699-0000",
-      "vacinado": false,
-      "servicos": ["banho", "tosa"]
-    },
-    {
-      "nome": "jujuba",
-      "tipo": "cachorro",
-      "idade": "10",
-      "raca": "Vira-lata",
-      "peso": "10",
-      "tutor": "André",
-      "contato": "(81) 99699-0000",
-      "vacinado": false,
-      "servicos": ["banho", "tosa"]
-    },
-    {
-      "nome": "jujuba",
-      "tipo": "cachorro",
-      "idade": "10",
-      "raca": "Vira-lata",
-      "peso": "10",
-      "tutor": "André",
-      "contato": "(81) 99699-0000",
-      "vacinado": false,
-      "servicos": ["banho", "tosa"]
+      "servicos": [{ "nome": "", "data": "" }]
     }
   ]
 }
