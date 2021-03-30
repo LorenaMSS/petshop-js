@@ -10,22 +10,39 @@ const atualizaBanco = () => {
   fs.writeFileSync('bancoDados.json', petsAtualizado, 'utf-8');
 };
 
+const filtrarTipoPet = (tipoPet) => {
+  let petEncontrados = bancoDados.pets.filter((pet) => {
+    return pet.tipo == tipoPet;
+  });
+  return petEncontrados;
+};
+
+const buscarPet = (nomePet) => {
+  let petEncontrado = bancoDados.pets.find((pet) => {
+    return pet.nome == nomePet;
+  });
+
+  return petEncontrado
+    ? petEncontrado
+    : `Nenhum pet encontrado com o nome ${nomePet}`;
+};
+
 const listarPets = () => {
-  for (let pet of bancoDados.pets) {
-    // template string
-    console.log(`nome do pet: ${pet.nome} serviços:`);
-    for (let serviço of pet.servicos) {
-      console.log(serviço);
-    }
-    pet.vacinado
-      ? console.log('pet vacinado')
-      : console.log('pet não vacinado');
-  }
+  bancoDados.pets.forEach((pet) => {
+    console.log(
+      `${pet.nome}, ${pet.idade} anos, ${pet.tipo}, ${pet.raca}, ${
+        pet.vacinado ? 'vacinado' : 'não vacinado'
+      }`
+    );
+
+    pet.servicos.forEach((servico) => {
+      console.log(`${servico.data} - ${servico.nome}`);
+    });
+  });
 };
 
 const vacinarPet = (pet) => {
-  let nomep = 'Mimosa';
-
+  let nomep = pet.nome;
   for (let pet of bancoDados.pets) {
     if (pet.nome == nomep) {
       if (pet.vacinado == true) {
@@ -41,16 +58,12 @@ const vacinarPet = (pet) => {
 
 const campanhaVac = () => {
   let cont = 0;
-  for (let pet of bancoDados.pets) {
+  const vac = bancoDados.pets.map(function (pet) {
     if (pet.vacinado == false) {
+      vacinarPet(pet);
       cont++;
-      pet.vacinado == true;
-      modificarvac();
-      console.log(`${pet.nome} foi vacinado!`);
     }
-  }
-  atualizaBanco();
-
+  });
   console.log(cont + ' pets foram vacinados nessa campanha!');
 };
 
@@ -71,8 +84,6 @@ const novoCliente = () => {
   atualizaBanco();
 };
 const darBanho = (pet) => {
-  nomep = pet.nome;
-
   for (let pet of bancoDados.pets) {
     if (pet.nome == nomep) {
       pet.servicos.push({
@@ -86,6 +97,7 @@ const darBanho = (pet) => {
     }
   }
 };
+
 const tosarPet = (pet) => {
   nomep = pet.nome;
 
@@ -127,13 +139,5 @@ const atenderCliente = (pet, servicos) => {
 };
 
 listarPets();
-
-atenderCliente(bancoDados.pets[0], darBanho);
-
-//novoCliente();
-//darBanho();
-//cortarUnhas();
-// tosarPet();
 //campanhaVac();
-//vacinarPet();
-listarPets();
+//listarPets();
