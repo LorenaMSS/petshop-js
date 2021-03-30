@@ -35,6 +35,17 @@
       "contato": "(81) 99567-0089",
       "vacinado": true,
       "servicos": [{ "nome": "banho", "data": "29-03-2021" }]
+    },
+    {
+      "nome": "jujuba",
+      "tipo": "cachorro",
+      "idade": "10",
+      "raca": "Vira-lata",
+      "peso": "10",
+      "tutor": "José",
+      "contato": "(81) 99699-0000",
+      "vacinado": false,
+      "servicos": []
     }
   ]
 }

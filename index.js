@@ -10,6 +10,25 @@ const atualizaBanco = () => {
   fs.writeFileSync('bancoDados.json', petsAtualizado, 'utf-8');
 };
 
+const contatoTutor = (pet) => {
+  let { nome, tutor, contato } = contatoPet;
+
+  return `Tutor: ${tutor}
+   Contato: ${contato}
+   Pet: ${nome}`;
+};
+
+const filtratTutor = (nomeTutor) => {
+  let petsTutor = bancoDados.pets.filter((pet) => {
+    return pet.tutor == nomeTutor;
+  });
+
+  console.log(`Pets do tutor ${nomeTutor}`);
+  petsTutor.forEach((pet) => {
+    console.log(`${pet.nome}- ${pet.tipo}`);
+  });
+};
+
 const filtrarTipoPet = (tipoPet) => {
   let petEncontrados = bancoDados.pets.filter((pet) => {
     return pet.tipo == tipoPet;
@@ -18,14 +37,15 @@ const filtrarTipoPet = (tipoPet) => {
 };
 
 const clientePremium = (pet) => {
+  let { nome } = pet;
   let nServicos = pet.servicos.length;
 
   if (nServicos > 5) {
     console.log(
-      `Olá, ${pet.nome}! Você é um cliente especial e ganhou um descontão!`
+      `Olá, ${nome}! Você é um cliente especial e ganhou um descontão!`
     );
   } else {
-    console.log(`Olá, ${pet.nome}! Você ainda não tem descontos disponiveis!`);
+    console.log(`Olá, ${nome}! Você ainda não tem descontos disponiveis!`);
   }
 };
 
@@ -41,14 +61,17 @@ const buscarPet = (nomePet) => {
 
 const listarPets = () => {
   bancoDados.pets.forEach((pet) => {
+    let { nome, idade, tipo, raca, vacinado, servicos } = pet;
+
     console.log(
-      `${pet.nome}, ${pet.idade} anos, ${pet.tipo}, ${pet.raca}, ${
-        pet.vacinado ? 'vacinado' : 'não vacinado'
+      `${nome}, ${idade} anos, ${tipo}, ${raca}, ${
+        vacinado ? 'vacinado' : 'não vacinado'
       }`
     );
 
-    pet.servicos.forEach((servico) => {
-      console.log(`${servico.data} - ${servico.nome}`);
+    servicos.forEach((servico) => {
+      let { data, nome } = servico;
+      console.log(`${data} - ${nome}`);
     });
   });
 };
@@ -86,7 +109,7 @@ const novoCliente = () => {
     idade: '10',
     raca: 'Vira-lata',
     peso: '10',
-    tutor: 'André',
+    tutor: 'José',
     contato: '(81) 99699-0000',
     vacinado: false,
     servicos: ['banho', 'tosa'],
@@ -151,5 +174,8 @@ const atenderCliente = (pet, servicos) => {
 };
 
 listarPets();
+
+//novoCliente();
+//filtratTutor('José');
 //campanhaVac();
 //listarPets();
