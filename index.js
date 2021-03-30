@@ -17,6 +17,18 @@ const filtrarTipoPet = (tipoPet) => {
   return petEncontrados;
 };
 
+const clientePremium = (pet) => {
+  let nServicos = pet.servicos.length;
+
+  if (nServicos > 5) {
+    console.log(
+      `Olá, ${pet.nome}! Você é um cliente especial e ganhou um descontão!`
+    );
+  } else {
+    console.log(`Olá, ${pet.nome}! Você ainda não tem descontos disponiveis!`);
+  }
+};
+
 const buscarPet = (nomePet) => {
   let petEncontrado = bancoDados.pets.find((pet) => {
     return pet.nome == nomePet;
