@@ -77,17 +77,12 @@ const listarPets = () => {
 };
 
 const vacinarPet = (pet) => {
-  let nomep = pet.nome;
-  for (let pet of bancoDados.pets) {
-    if (pet.nome == nomep) {
-      if (pet.vacinado == true) {
-        console.log(`Ops, ${pet.nome} já está vacinado!'`);
-      } else {
-        pet.vacinado = true;
-        console.log(`${pet.nome} foi vacinado com sucesso!`);
-      }
-    }
-    atualizaBanco();
+  if (!pet.vacinado) {
+    pet.vacinado = true;
+    atualizarBanco();
+    console.log(`${pet.nome} foi vacinado com sucesso!`);
+  } else {
+    console.log(`Ops, ${pet.nome} já está vacinado!`);
   }
 };
 
@@ -104,19 +99,17 @@ const campanhaVac = () => {
 
 const novoCliente = () => {
   let novoPet = {
-    nome: 'jujuba',
-    tipo: 'cachorro',
-    idade: '10',
-    raca: 'Vira-lata',
-    peso: '10',
-    tutor: 'José',
+    nome: 'Sansa',
+    tipo: 'Gato',
+    idade: '1',
+    raca: 'SRD',
+    peso: '2',
+    tutor: 'Ana',
     contato: '(81) 99699-0000',
     vacinado: false,
-    servicos: ['banho', 'tosa'],
+    servicos: [],
   };
-  bancoDados.pets.push(novoPet);
-
-  atualizaBanco();
+  adcionatPet(novoPet);
 };
 const darBanho = (pet) => {
   for (let pet of bancoDados.pets) {
@@ -173,9 +166,19 @@ const atenderCliente = (pet, servicos) => {
   console.log('Tchau, até mais!');
 };
 
+const adcionatPet = (...novoPet) => {
+  novoPet.forEach((pet) => {
+    bancoDados.pets.push(pet);
+  });
+
+  atualizaBanco();
+  novoPet.forEach((pet) => {
+    console.log(`${pet.nome} foi adicionado com sucesso!`);
+  });
+};
 listarPets();
 
-//novoCliente();
+novoCliente();
 //filtratTutor('José');
 //campanhaVac();
-//listarPets();
+listarPets();
